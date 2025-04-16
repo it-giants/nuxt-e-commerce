@@ -1,0 +1,31 @@
+<template>
+  <header class="bg-[rgba(120,_200,_199,_0.1)] shadow-sm">
+    <Container class="header-content flex items-center py-3">
+      <div class="logo">
+        <img src="assets/logo.png" class="w-[150px]" />
+      </div>
+    
+      <nav class="ms-10">
+        <ul class="flex gap-3 text-[#333]">
+          <li><NuxtLink to="/">Home</NuxtLink></li>
+          <li><NuxtLink to="#">Categories</NuxtLink></li>
+          <li><NuxtLink to="/products">Products</NuxtLink></li>
+        </ul>
+      </nav>
+
+      <div class="ms-auto">
+        search, favorite, cart
+      </div>
+    </Container>
+  </header>
+</template>
+
+<script setup>
+import Container from './Container.vue';
+
+
+</script>
+
+<style lang="scss" scoped>
+
+</style>

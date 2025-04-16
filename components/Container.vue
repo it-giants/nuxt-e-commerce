@@ -3,7 +3,9 @@
 </script>
 
 <template>
-    <h1>This suppose to be Products</h1>
+  <div class="container mx-auto px-2">
+    <slot />
+  </div>
 </template>
 
 <style lang="scss" scoped>

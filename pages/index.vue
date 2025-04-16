@@ -1,4 +1,6 @@
 <script setup>
+// import { useThemeStore } from '@/stores/themeStore.js';
+// const store = useThemeStore();
 
 </script>
 
