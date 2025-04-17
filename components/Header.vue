@@ -13,7 +13,7 @@ const themeStore = useThemeStore();
       </div>
     
       <nav class="ms-10">
-        <ul class="flex gap-3 text-[#333]">
+        <ul class="flex gap-3">
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="#">Categories</NuxtLink></li>
           <li><NuxtLink to="/products">Products</NuxtLink></li>
@@ -28,7 +28,4 @@ const themeStore = useThemeStore();
 </template>
 
 <style lang="scss">
-  html.dark {
-    background: black;
-  }
 </style>
