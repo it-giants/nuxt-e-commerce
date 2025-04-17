@@ -1,7 +1,17 @@
 <script setup>
-import { useThemeStore } from '@/stores/themeStore.js';
 import Header from '~/components/Header.vue';
-const themeStore = useThemeStore();
+
+useHead({
+  script: [{
+    children: `
+     const isDark = localStorage.getItem('isDark');
+      if (isDark === 'true') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+  `}]
+})
 </script>
 
 <template>
@@ -10,8 +20,8 @@ const themeStore = useThemeStore();
 </template>
 
 <style lang="scss">
-  body.dark {
-    background: black;
-    color: white;
-  }
+html.dark {
+  background: black;
+  color: white;
+}
 </style>

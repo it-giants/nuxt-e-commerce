@@ -1,3 +1,10 @@
+<script setup>
+import Container from './Container.vue';
+import { useThemeStore } from '@/stores/themeStore.js';
+const themeStore = useThemeStore();
+
+</script>
+
 <template>
   <header class="bg-[rgba(120,_200,_199,_0.1)] shadow-sm">
     <Container class="header-content flex items-center py-3">
@@ -14,18 +21,14 @@
       </nav>
 
       <div class="ms-auto">
-        search, favorite, cart
+        <button @click="themeStore.toggleDark">Toggle Dark</button>
       </div>
     </Container>
   </header>
 </template>
 
-<script setup>
-import Container from './Container.vue';
-
-
-</script>
-
-<style lang="scss" scoped>
-
+<style lang="scss">
+  html.dark {
+    background: black;
+  }
 </style>
