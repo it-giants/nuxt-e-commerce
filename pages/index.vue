@@ -1,11 +1,16 @@
 <script setup>
+import Hero from '~/components/Hero.vue';
+
 // import { useThemeStore } from '@/stores/themeStore.js';
 // const store = useThemeStore();
 
 </script>
 
 <template>
-  <h1>This suppose to be Homepage</h1>
+  <main>
+    <Hero />
+    
+  </main>
 </template>
 
 <style lang="scss" scoped>

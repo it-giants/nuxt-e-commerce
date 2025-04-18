@@ -28,4 +28,7 @@ const themeStore = useThemeStore();
 </template>
 
 <style lang="scss">
+header {
+  height: 70px;
+}
 </style>
