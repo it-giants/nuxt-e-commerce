@@ -1,15 +1,13 @@
 <script setup>
+import Categories from '~/components/Categories.vue';
 import Hero from '~/components/Hero.vue';
-
-// import { useThemeStore } from '@/stores/themeStore.js';
-// const store = useThemeStore();
 
 </script>
 
 <template>
   <main>
     <Hero />
-    
+    <Categories />
   </main>
 </template>
 

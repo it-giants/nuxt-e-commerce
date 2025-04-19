@@ -6,7 +6,7 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-  <header class="bg-[rgba(120,_200,_199,_0.1)] shadow-sm">
+  <header class="shadow-sm">
     <Container class="header-content flex items-center py-3">
       <div class="logo">
         <img src="assets/logo.png" class="w-[150px]" />
