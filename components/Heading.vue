@@ -4,7 +4,6 @@ const props = defineProps({
     type: String,
     default: 'h2',
     validator(value) {
-      // Check if the value is one of 'h1', 'h2', 'h3', 'h4', 'h5', or 'h6'
       return ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value);
     }
   },
@@ -29,6 +28,10 @@ h5,
 h6 {
   line-height: normal;
   font-weight: bold;
+
+  &.primary-color {
+    color: var(--primary-color);
+  }
 }
 
 h1 {

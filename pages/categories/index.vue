@@ -1,14 +1,9 @@
 <script setup>
 import Categories from '~/components/Categories.vue';
-import Hero from '~/components/Hero.vue';
-
 </script>
 
 <template>
-  <main>
-    <Hero />
-    <Categories :numberOfCategories=5 />
-  </main>
+    <Categories />
 </template>
 
 <style lang="scss" scoped>

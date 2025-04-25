@@ -41,12 +41,16 @@ html {
     --background-color: #011313;
     --text-color: #fff;
   }
-
   background: var(--background-color);
 }
 
 body {
   font-family: 'IBM Plex Sans';
   color: var(--text-color);
+  padding-top: 70px;
+}
+
+button {
+  border-radius: 0;
 }
 </style>
