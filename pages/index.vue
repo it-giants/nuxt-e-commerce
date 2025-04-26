@@ -5,10 +5,8 @@ import Hero from '~/components/Hero.vue';
 </script>
 
 <template>
-  <main>
-    <Hero />
-    <Categories :numberOfCategories=5 />
-  </main>
+  <Hero />
+  <Categories :numberOfCategories=5 />
 </template>
 
 <style lang="scss" scoped>

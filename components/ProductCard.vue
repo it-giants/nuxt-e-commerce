@@ -15,8 +15,8 @@ const props = defineProps({
 </script>
 
 <template>
-  <NuxtLink :to="`products/${productSlug}`" class="product relative aspect-square flex flex-col" v-bind="$attrs">
-    <div class="product__img relative">
+  <NuxtLink :to="`/products/slug/${productSlug}`" class="product relative aspect-square flex flex-col" v-bind="$attrs">
+    <div class="product__img relative h-full">
       <NuxtImg :src="productImage" class="h-full w-full object-cover"></NuxtImg>
     </div>
 

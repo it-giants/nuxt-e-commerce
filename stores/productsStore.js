@@ -2,7 +2,7 @@ import {defineStore} from 'pinia';
 
 export const useProductsStore = defineStore('products', () => {
   const products = ref([]);
-  const singleProduct = ref([]);
+  const singleProduct = ref(null);
   const isLoading = ref(false);
   const error = ref(null);
 
@@ -26,17 +26,14 @@ export const useProductsStore = defineStore('products', () => {
     }
   }
 
-  const fetchSingleProduct = async (productSlug) => {
-    console.log(productSlug);
-    
+  const fetchSingleProduct = async (productSlug) => {    
     isLoading.value = true;
     error.value = null;
 
     try {
-      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products/slug/${productSlug}`);
-      console.log(data.value);
-      
-      singleProduct.value = data.value || [];      
+      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products/slug/${productSlug}`);      
+      singleProduct.value = data.value;
+      return singleProduct.value;
     } catch (error) {
       console.error(error);
     }

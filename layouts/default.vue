@@ -22,7 +22,9 @@ useHead({
 
 <template>
   <Header />
-  <slot />
+  <main>
+    <slot />
+  </main>
 </template>
 
 <style lang="scss">
@@ -30,6 +32,7 @@ useHead({
   --text-color: #333;
   --background-color: #f0f0f0;
   --primary-color: #53A5A4;
+  --secondary-color: #BF8567;
 }
 
 * {
@@ -40,8 +43,15 @@ html {
   &.dark {
     --background-color: #011313;
     --text-color: #fff;
+    --secondary-color: #F3F1DD;
   }
   background: var(--background-color);
+}
+
+@media (max-width: 1399px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 body {

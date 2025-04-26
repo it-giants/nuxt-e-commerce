@@ -3,6 +3,12 @@ import Container from './Container.vue';
 import { useThemeStore } from '@/stores/themeStore.js';
 
 const themeStore = useThemeStore();
+
+// Resolve hydration mismatch
+const mounted = ref(false);
+onMounted(() => {
+  mounted.value = true;
+})
 </script>
 
 <template>
@@ -23,7 +29,7 @@ const themeStore = useThemeStore();
       </nav>
 
       <div class="ms-auto">
-        <button @click="themeStore.toggleDark">Toggle {{ themeStore.isDark ? 'Light' : 'Dark' }}</button>
+        <button v-if="mounted" @click="themeStore.toggleDark">{{ themeStore.isDark ? 'Light ☀️' : 'Dark 🕶️' }}</button>
       </div>
     </Container>
   </header>

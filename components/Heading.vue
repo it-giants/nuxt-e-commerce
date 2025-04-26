@@ -35,26 +35,26 @@ h6 {
 }
 
 h1 {
-  font-size: 48px;
+  font-size: 3em;
 }
 
 h2 {
-  font-size: 42px;
+  font-size: 2.625em;
 }
 
 h3 {
-  font-size: 32px;
+  font-size: 2em;
 }
 
 h4 {
-  font-size: 28px;
+  font-size: 1.75em;
 }
 
 h5 {
-  font-size: 24px;
+  font-size: 1.5em;
 }
 
 h6 {
-  font-size: 20px;
+  font-size: 1.25em;
 }
 </style>
