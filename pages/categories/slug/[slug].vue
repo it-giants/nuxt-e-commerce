@@ -38,7 +38,7 @@ const { data: products} = await useAsyncData('products-category', () => fetchPro
 
       <div class="current-category-products my-10">
         <Heading v-if="products && products?.length" class="text-[var(--primary-color)] mb-6">More Products in {{ singleCategory?.name }}</Heading>
-        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8">
+        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
             <ProductCard 
                 v-if="products"
                 v-for="product in products"

@@ -8,9 +8,9 @@ export default {
       },
 
       screens: {
-        'sm-max': { 'max': '756px' },
-        'md-max': { 'max': '991px' },
         'lg-max': { 'max': '1399px' },
+        'md-max': { 'max': '991px' },
+        'sm-max': { 'max': '756px' },
       }
     }
   }

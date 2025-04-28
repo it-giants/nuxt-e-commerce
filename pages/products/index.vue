@@ -17,7 +17,7 @@ const { data: products} = await useAsyncData('products', () => fetchProducts());
         <Container>
             <Heading class="mb-5 primary-color">Products</Heading>
 
-            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8">
+            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
                 <ProductCard 
                     v-for="product in products"
                     :key="product.id"
