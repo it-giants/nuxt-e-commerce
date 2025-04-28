@@ -21,6 +21,7 @@ const { categories } = storeToRefs(categoriesStore);
       <Heading class="mb-5 primary-color">Categories</Heading>
       <div class="grid grid-cols-5 gap-8">
         <div class="category relative aspect-square flex justify-center" v-for="category in categories">
+          <p>{{ category.slug }}</p>
           <div class="absolute bottom-4 text-center bg-[rgba(0,0,0,0.5)] px-4 py-2 w-5/6 ">
             <p class=" text-white font-bold line-clamp-1">{{ category?.name }}</p>
           </div>

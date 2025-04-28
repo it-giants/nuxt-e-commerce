@@ -1,18 +1,10 @@
 <script setup>
+import { getProducts } from '~/API/getProducts';
 import ProductCard from '~/components/ProductCard.vue'
 import Container from '~/components/Container.vue';
+import Heading from '~/components/Heading.vue';
 
-import { useProductsStore } from '@/stores/productsStore';
-
-const productsStore = useProductsStore();
-
-await useAsyncData('products', () => productsStore.fetchProducts());
-const { products } = storeToRefs(productsStore);
-
-const validProducts = computed(() =>
-  products.value.filter((product) => !!product?.slug)
-);
-
+const products = await getProducts();
 </script>
 
 <template>
@@ -20,9 +12,9 @@ const validProducts = computed(() =>
         <Container>
             <Heading class="mb-5 primary-color">Products</Heading>
 
-            <div class="grid grid-cols-5 gap-8">
+            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8">
                 <ProductCard 
-                    v-for="product in validProducts"
+                    v-for="product in products"
                     :key="product.id"
                     :product-slug="product?.slug" 
                     :product-title="product?.title" 

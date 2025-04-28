@@ -1,0 +1,52 @@
+<script setup>
+import Container from '~/components/Container.vue';
+import BreadCrumb from '~/components/BreadCrumb.vue';
+import { getSingleCategory } from '~/API/getSingleCategory';
+import { getProducts } from '~/API/getProducts';
+import Heading from '~/components/Heading.vue';
+
+const route = useRoute();
+const singleCategory = await getSingleCategory(route.params.slug);
+const products = await getProducts();
+const filteredProducts = computed(() =>
+  products.value.filter((p) => {return p?.category?.id === singleCategory?.value?.id})
+);
+</script>
+
+<template>
+  <Container>
+    <BreadCrumb :path="`/categories`" :pathName="`categories`" :currentPathName="singleCategory?.name" />
+
+    <div v-if="singleCategory">
+      <div class="grid grid-cols-2 md-max:flex md-max:flex-col gap-8">
+        <div>
+          <NuxtImg :src="singleCategory?.image" class="aspect-square w-full h-full" />
+        </div>
+  
+        <div class="flex flex-col gap-8">
+          <Heading tag="h1">{{ singleCategory?.name }}</Heading>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Alias vel eum labore sint totam porro architecto, explicabo adipisci itaque et? Nobis impedit architecto, facilis nemo animi autem consectetur nam nesciunt provident eum! Dolorem corporis labore aliquam, harum unde fugit corrupti cupiditate esse dolores quia incidunt nostrum eos aperiam natus eligendi minus vitae provident cumque voluptas aliquid nam perspiciatis beatae! Nulla suscipit quia corporis accusamus? Porro doloribus natus vel maxime quia exercitationem eos illo labore inventore libero odio dolorem, adipisci harum quam enim eligendi assumenda. Necessitatibus, dolorum dolores dignissimos ducimus reprehenderit iusto, perspiciatis quos hic, odit sunt quaerat eum aut fuga.</p>
+        </div>
+      </div>
+
+      <div class="current-category-products my-10">
+        <Heading v-if="filteredProducts && filteredProducts?.length" class="text-[var(--primary-color)] mb-6">Products in {{ singleCategory?.name }}</Heading>
+        <div v-if="filteredProducts && filteredProducts?.length" class="grid grid-cols-5 gap-8">
+            <ProductCard 
+                v-if="filteredProducts"
+                v-for="product in filteredProducts"
+                :key="product?.id"
+                :product-slug="product?.slug" 
+                :product-title="product?.title" 
+                :product-image="product?.images[0]" 
+            />
+        </div>
+      </div>
+  
+    </div>
+  </Container>
+</template>
+
+<style lang="scss" scoped>
+
+</style>
