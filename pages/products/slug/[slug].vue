@@ -17,7 +17,7 @@ useHead({
 });
 
 const { fetchProducts } = useProductsStore();
-const { data: relatedProducts } = await useAsyncData('related-products', () => fetchProducts({limit: 5}));
+const { data: relatedProducts } = await useAsyncData('related-products', () => fetchProducts({limit: 5, category: singleProduct?.value?.category?.slug}));
 </script>
 
 <template>
