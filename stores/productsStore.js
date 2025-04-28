@@ -7,15 +7,17 @@ export const useProductsStore = defineStore('products', () => {
   const error = ref(null);
   let _limit;
   let _category;
+  let _searchQuery;
 
-  const fetchProducts = async ({limit, category} = {}) => {    
+  const fetchProducts = async ({limit, category, searchQuery} = {}) => {    
     isLoading.value = true;
     error.value = null;
     limit ? _limit = `limit=${limit}` : _limit = '';
     category ? _category = `categorySlug=${category}` : _category = '';
-
+    searchQuery ? _searchQuery = `title=${searchQuery}` : _searchQuery = '';
+    
     try {
-      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products?${_category}&${_limit}&offset=0`);
+      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products?${_category}&${_limit}&offset=0&${_searchQuery}`);
       products.value = data.value || [];
       return products.value;
     }

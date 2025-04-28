@@ -27,7 +27,7 @@ const { data: products} = await useAsyncData('products-category', () => fetchPro
     <div v-if="singleCategory">
       <div class="grid grid-cols-2 md-max:flex md-max:flex-col gap-8">
         <div>
-          <NuxtImg :src="singleCategory?.image" class="aspect-square w-full h-full" />
+          <NuxtImg :src="singleCategory?.image" class="aspect-square w-full h-full object-cover" />
         </div>
   
         <div class="flex flex-col gap-8">

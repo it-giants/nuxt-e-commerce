@@ -17,7 +17,7 @@ const props = defineProps({
 <template>
   <NuxtLink :to="`/products/slug/${productSlug}`" class="product relative aspect-square flex flex-col" v-bind="$attrs">
     <div class="product__img relative h-full">
-      <NuxtImg :src="productImage" class="h-full w-full object-cover"></NuxtImg>
+      <NuxtImg :src="productImage" class="h-full w-full object-cover" loading="lazy"></NuxtImg>
     </div>
 
     <div class="text-center bg-[var(--primary-color)] px-4 py-2 h-10">

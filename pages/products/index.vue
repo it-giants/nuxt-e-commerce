@@ -8,8 +8,18 @@ useHead({
     title: 'Products',
 });
 
+const route = useRoute();
+
+const titleQuery = computed(() => route.query.title || ' ');
+
 const { fetchProducts } = useProductsStore();
-const { data: products} = await useAsyncData('products', () => fetchProducts());
+const { data: products, refresh } = await useAsyncData(`products-${titleQuery.value}`, () => fetchProducts({searchQuery: titleQuery.value}));
+
+// Watch for query changes and refresh data
+watch(() => titleQuery.value, () => {
+    refresh();
+  }
+);
 </script>
 
 <template>

@@ -2,6 +2,7 @@
 import { useCategoriesStore } from '#imports';
 import CategoryCard from '~/components/CategoryCard.vue';
 import Heading from '~/components/Heading.vue';
+import HeroSection from '~/components/HeroSection.vue';
 
 useHead({
     title: 'Homepage',
@@ -12,7 +13,7 @@ const { data: categories } = await useAsyncData('homepage-categories', () => fet
 </script>
 
 <template>
-  <Hero />
+  <HeroSection />
 
   <section class="categories py-10">
         <Container>

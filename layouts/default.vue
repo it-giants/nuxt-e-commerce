@@ -30,7 +30,7 @@ useHead({
 <style lang="scss">
 :root {
   --text-color: #333;
-  --background-color: #f0f0f0;
+  --background-color: #e9e9e9;
   --primary-color: #53A5A4;
   --secondary-color: #BF8567;
 }

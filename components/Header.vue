@@ -3,6 +3,13 @@ import Container from './Container.vue';
 import { useThemeStore } from '@/stores/themeStore.js';
 
 const themeStore = useThemeStore();
+let searchInput = ref('');
+const router = useRouter();
+
+function submitSearch() {
+  let query = searchInput.value.trim() ? { title: searchInput.value } : undefined;
+  router.push({ path: '/products', query });
+}
 
 // Resolve hydration mismatch
 const mounted = ref(false);
@@ -28,7 +35,18 @@ onMounted(() => {
         </ul>
       </nav>
 
-      <div class="ms-auto">
+      <div class="ms-auto me-5">
+        <form @submit.prevent="submitSearch" class="flex items-center">
+          <input
+            v-model="searchInput"
+            type="text"
+            placeholder="Search for products..."
+            class="search-input bg-transparent px-2 py-1 border border-[var(--primary-color)] outline-none"
+          />
+        </form>
+      </div> 
+
+      <div>
         <button v-if="mounted" @click="themeStore.toggleDark">{{ themeStore.isDark ? 'Light ☀️' : 'Dark 🕶️' }}</button>
       </div>
     </Container>
