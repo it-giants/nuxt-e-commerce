@@ -40,6 +40,8 @@ useHead({
 }
 
 html {
+  scroll-behavior: smooth;
+  
   &.dark {
     --background-color: #011313;
     --text-color: #fff;

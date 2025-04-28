@@ -5,13 +5,17 @@ export const useProductsStore = defineStore('products', () => {
   const singleProduct = ref(null);
   const isLoading = ref(false);
   const error = ref(null);
+  let _limit;
+  let _category;
 
-  const fetchProducts = async ({limit} = {}) => {
+  const fetchProducts = async ({limit, category} = {}) => {    
     isLoading.value = true;
     error.value = null;
+    limit ? _limit = `limit=${limit}` : _limit = '';
+    category ? _category = `categorySlug=${category}` : _category = '';
 
     try {
-      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products`);
+      const { data } = await useFetch(`https://api.escuelajs.co/api/v1/products?${_category}&${_limit}&offset=0`);
       products.value = data.value || [];
       return products.value;
     }

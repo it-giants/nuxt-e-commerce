@@ -1,10 +1,11 @@
 <script setup>
-import { getProducts } from '~/API/getProducts';
+import { useProductsStore } from '@/stores/productsStore';
 import ProductCard from '~/components/ProductCard.vue'
 import Container from '~/components/Container.vue';
 import Heading from '~/components/Heading.vue';
 
-const products = await getProducts();
+const { fetchProducts } = useProductsStore();
+const { data: products} = await useAsyncData('products', () => fetchProducts());
 </script>
 
 <template>

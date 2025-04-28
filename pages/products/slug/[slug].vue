@@ -1,5 +1,5 @@
 <script setup>
-import { getSingleProduct } from '~/API/getSingleProduct';
+import { useProductsStore } from '#imports';
 import Container from '~/components/Container.vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/css';
@@ -9,7 +9,11 @@ import { Navigation, Pagination } from 'swiper/modules';
 import BreadCrumb from '~/components/BreadCrumb.vue';
 
 const route = useRoute();
-const singleProduct = await getSingleProduct(route.params.slug);
+const { fetchSingleProduct } = useProductsStore();
+const { data: singleProduct } = await useAsyncData('single-product', () => fetchSingleProduct(route.params.slug));
+
+const { fetchProducts } = useProductsStore();
+const { data: relatedProducts } = await useAsyncData('related-products', () => fetchProducts({limit: 5}));
 </script>
 
 <template>
@@ -51,15 +55,41 @@ const singleProduct = await getSingleProduct(route.params.slug);
           <span class="bg-cyan-500 text-white px-2">{{ singleProduct?.category?.name?.toLowerCase() }}</span>
         </p>
 
-        <p class="text-[48px] leading-[normal] font-bold text-[var(--secondary-color)]">${{ singleProduct.price }}</p>
+        <p class="text-[48px] leading-[normal] font-bold text-[var(--secondary-color)]">${{ singleProduct?.price }}</p>
+      </div>
+    </div>
+
+    <div class="related-products my-10">
+      <Heading v-if="relatedProducts && relatedProducts?.length" class="text-[var(--primary-color)] mb-6">Related Products</Heading>
+      <div v-if="relatedProducts && relatedProducts?.length" class="grid grid-cols-5 gap-8">
+          <ProductCard 
+              v-if="relatedProducts"
+              v-for="relatedProduct in relatedProducts"
+              :key="relatedProduct?.id"
+              :product-slug="relatedProduct?.slug" 
+              :product-title="relatedProduct?.title" 
+              :product-image="relatedProduct?.images[0]" 
+          />
       </div>
     </div>
   </Container>
 </template>
 
 <style lang="scss" scoped>
+:deep(.swiper-pagination) {
+  display: flex;
+  align-items: center;
+  width: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffffffa2;
+  padding-inline: 0.5rem;
+  padding-block: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 :deep(.swiper-pagination-bullet) {
-  background-color: #fff;
+  background-color: #292929;
 }
 
 :deep(.swiper-pagination-bullet-active) {

@@ -1,16 +1,19 @@
 <script setup>
 import Container from '~/components/Container.vue';
 import BreadCrumb from '~/components/BreadCrumb.vue';
-import { getSingleCategory } from '~/API/getSingleCategory';
-import { getProducts } from '~/API/getProducts';
+import { useProductsStore } from '#imports';
+import { useCategoriesStore } from '#imports';
 import Heading from '~/components/Heading.vue';
 
 const route = useRoute();
-const singleCategory = await getSingleCategory(route.params.slug);
-const products = await getProducts();
-const filteredProducts = computed(() =>
-  products.value.filter((p) => {return p?.category?.id === singleCategory?.value?.id})
-);
+
+// Fetch Single Category
+const { fetchSingleCategory } = useCategoriesStore();
+const { data: singleCategory } = await useAsyncData('singleCategory', () => fetchSingleCategory(route.params.slug));
+
+// Fetch Related Products to current category
+const { fetchProducts } = useProductsStore();
+const { data: products} = await useAsyncData('products-category', () => fetchProducts({category: route.params.slug}));
 </script>
 
 <template>
@@ -30,11 +33,11 @@ const filteredProducts = computed(() =>
       </div>
 
       <div class="current-category-products my-10">
-        <Heading v-if="filteredProducts && filteredProducts?.length" class="text-[var(--primary-color)] mb-6">Products in {{ singleCategory?.name }}</Heading>
-        <div v-if="filteredProducts && filteredProducts?.length" class="grid grid-cols-5 gap-8">
+        <Heading v-if="products && products?.length" class="text-[var(--primary-color)] mb-6">More Products in {{ singleCategory?.name }}</Heading>
+        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8">
             <ProductCard 
-                v-if="filteredProducts"
-                v-for="product in filteredProducts"
+                v-if="products"
+                v-for="product in products"
                 :key="product?.id"
                 :product-slug="product?.slug" 
                 :product-title="product?.title" 

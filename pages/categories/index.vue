@@ -1,10 +1,11 @@
 <script setup>
+import { useCategoriesStore } from '#imports';
 import CategoryCard from '~/components/CategoryCard.vue';
 import Container from '~/components/Container.vue';
 import Heading from '~/components/Heading.vue';
-import { getCategories } from '~/API/getCategories';
 
-const categories = await getCategories();
+const { fetchCategories } = useCategoriesStore();
+const { data: categories } = await useAsyncData('categories', () => fetchCategories())
 </script>
 
 <template>

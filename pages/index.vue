@@ -1,10 +1,10 @@
 <script setup>
+import { useCategoriesStore } from '#imports';
 import CategoryCard from '~/components/CategoryCard.vue';
 import Heading from '~/components/Heading.vue';
 
-import { getCategories } from '~/API/getCategories';
-
-const categories = await getCategories(5);
+const { fetchCategories } = useCategoriesStore();
+const { data: categories } = await useAsyncData('homepage-categories', () => fetchCategories({limit: 5}))
 </script>
 
 <template>
@@ -16,7 +16,7 @@ const categories = await getCategories(5);
             <div v-if="categories && categories?.length" class="grid grid-cols-5 gap-8">
                 <CategoryCard
                     v-for="category in categories"
-                    :key="category.id"
+                    :key="category?.id"
                     :category-slug="category?.slug"
                     :category-name="category?.name"
                     :category-image="category?.image"
