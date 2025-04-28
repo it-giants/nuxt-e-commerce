@@ -3,6 +3,10 @@ import { useCategoriesStore } from '#imports';
 import CategoryCard from '~/components/CategoryCard.vue';
 import Heading from '~/components/Heading.vue';
 
+useHead({
+    title: 'Homepage',
+});
+
 const { fetchCategories } = useCategoriesStore();
 const { data: categories } = await useAsyncData('homepage-categories', () => fetchCategories({limit: 5}))
 </script>

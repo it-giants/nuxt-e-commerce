@@ -1,8 +1,12 @@
 <script setup>
-import { useProductsStore } from '@/stores/productsStore';
+import { useProductsStore } from '#imports';
 import ProductCard from '~/components/ProductCard.vue'
 import Container from '~/components/Container.vue';
 import Heading from '~/components/Heading.vue';
+
+useHead({
+    title: 'Products',
+});
 
 const { fetchProducts } = useProductsStore();
 const { data: products} = await useAsyncData('products', () => fetchProducts());

@@ -11,6 +11,10 @@ const route = useRoute();
 const { fetchSingleCategory } = useCategoriesStore();
 const { data: singleCategory } = await useAsyncData('singleCategory', () => fetchSingleCategory(route.params.slug));
 
+useHead({
+    title: singleCategory?.value?.name
+});
+
 // Fetch Related Products to current category
 const { fetchProducts } = useProductsStore();
 const { data: products} = await useAsyncData('products-category', () => fetchProducts({category: route.params.slug}));

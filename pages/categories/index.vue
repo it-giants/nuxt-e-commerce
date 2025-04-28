@@ -4,6 +4,10 @@ import CategoryCard from '~/components/CategoryCard.vue';
 import Container from '~/components/Container.vue';
 import Heading from '~/components/Heading.vue';
 
+useHead({
+    title: 'Categories',
+});
+
 const { fetchCategories } = useCategoriesStore();
 const { data: categories } = await useAsyncData('categories', () => fetchCategories())
 </script>

@@ -12,6 +12,10 @@ const route = useRoute();
 const { fetchSingleProduct } = useProductsStore();
 const { data: singleProduct } = await useAsyncData('single-product', () => fetchSingleProduct(route.params.slug));
 
+useHead({
+    title: singleProduct?.value?.title
+});
+
 const { fetchProducts } = useProductsStore();
 const { data: relatedProducts } = await useAsyncData('related-products', () => fetchProducts({limit: 5}));
 </script>
