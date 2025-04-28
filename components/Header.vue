@@ -9,6 +9,7 @@ const router = useRouter();
 function submitSearch() {
   let query = searchInput.value.trim() ? { title: searchInput.value } : undefined;
   router.push({ path: '/products', query });
+  searchInput.value = '';
 }
 
 // Resolve hydration mismatch

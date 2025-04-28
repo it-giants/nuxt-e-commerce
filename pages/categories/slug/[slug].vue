@@ -21,7 +21,7 @@ const { data: products} = await useAsyncData('products-category', () => fetchPro
 </script>
 
 <template>
-  <Container>
+  <Container class="py-8">
     <BreadCrumb :path="`/categories`" :pathName="`categories`" :currentPathName="singleCategory?.name" />
 
     <div v-if="singleCategory">

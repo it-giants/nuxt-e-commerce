@@ -21,7 +21,7 @@ const { data: relatedProducts } = await useAsyncData('related-products', () => f
 </script>
 
 <template>
-  <Container class="pt-8" v-if="singleProduct">
+  <Container class="py-8" v-if="singleProduct">
     <BreadCrumb :path="`/products`" :pathName="`products`" :currentPathName="singleProduct?.title" />
     <div class="grid grid-cols-2 md-max:flex md-max:flex-col gap-8">
       <div class="single-product__imgs">

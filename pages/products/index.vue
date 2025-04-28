@@ -9,7 +9,6 @@ useHead({
 });
 
 const route = useRoute();
-
 const titleQuery = computed(() => route.query.title || ' ');
 
 const { fetchProducts } = useProductsStore();
@@ -23,7 +22,7 @@ watch(() => titleQuery.value, () => {
 </script>
 
 <template>
-    <section class="categories py-10">
+    <section class="categories py-8">
         <Container>
             <Heading class="mb-5 primary-color">Products</Heading>
 
@@ -36,7 +35,13 @@ watch(() => titleQuery.value, () => {
                     :product-image="product?.images[0]" 
                 />
             </div>
-            <!-- <Products :numberOfProducts=5 /> -->
+            
+            <!-- I intended to use inline JavaScript to practice different ways of doing something -->
+             <div v-if="products.length < 1">
+                <span>No Product Were Found... </span>
+                <span class="underline font-bold cursor-pointer ps-1" @click="$router.replace('/products'); ">Reload Page</span>
+             </div>
+            
         </Container>
     </section>
 </template>

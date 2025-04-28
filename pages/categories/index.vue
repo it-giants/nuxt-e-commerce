@@ -13,7 +13,7 @@ const { data: categories } = await useAsyncData('categories', () => fetchCategor
 </script>
 
 <template>
-    <section class="categories py-10">
+    <section class="categories py-8">
         <Container>
             <Heading class="mb-5 primary-color">Categories</Heading>
             <div v-if="categories && categories?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
