@@ -1,5 +1,8 @@
 <script setup>
 import { useFavoritesStore } from '~/stores/favoriteStore';
+import Container from '~/components/Container.vue';
+import Heading from '~/components/Heading.vue';
+import ProductCard from '~/components/ProductCard.vue';
 
 const favoritesStore = useFavoritesStore();
 const favorites = computed(() => favoritesStore.favorites);
@@ -31,12 +34,12 @@ useHead({
         </NuxtLink>
       </div>
       
-      <div v-else class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
-          <ProductCard 
-              v-for="product in favorites"
-              :key="product.id"
-              :product="product"
-          />
+      <div v-else class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 lg-max:grid-cols-4">
+        <ProductCard 
+            v-for="product in favorites"
+            :key="product.id"
+            :product="product"
+        />
       </div>
     </div>
   </Container>

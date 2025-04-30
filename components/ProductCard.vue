@@ -73,8 +73,9 @@ const isFavorite = computed(() => favoritesStore.isFavorite(productId.value));
       </ClientOnly>
       
       <div class="p-4">
-        <h3 class="font-bold text-lg mb-2 line-clamp-1">{{ productTitle }}</h3>
-        <p class="font-semibold text-[var(--primary-color)]">${{ productPrice }}</p>
+        <h3 class="font-bold text-lg line-clamp-1">{{ productTitle }}</h3>
+        <p class="font-semibold text-[var(--primary-color)] my-2">${{ productPrice }}</p>
+        <p class="text-sm line-clamp-2">{{ productDescription }}</p>
       </div>
     </NuxtLink>
   </div>

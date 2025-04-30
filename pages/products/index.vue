@@ -1,5 +1,8 @@
 <script setup>
 import { useProductsStore } from '#imports';
+import Container from '~/components/Container.vue';
+import Heading from '~/components/Heading.vue';
+import ProductCard from '~/components/ProductCard.vue';
 
 useHead({
     title: 'Products',
@@ -27,7 +30,7 @@ watch(() => titleQuery.value, () => {
         <Container>
             <Heading class="mb-5 primary-color">Products</Heading>
 
-            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
+            <div v-if="products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 lg-max:grid-cols-4">
                 <ProductCard 
                     v-for="product in products"
                     :key="product.id"

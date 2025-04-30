@@ -56,6 +56,12 @@ html {
   }
 }
 
+@media (max-width: 767px) {
+  html {
+    font-size: 12px;
+  }
+}
+
 body {
   font-family: 'IBM Plex Sans';
   color: var(--text-color);

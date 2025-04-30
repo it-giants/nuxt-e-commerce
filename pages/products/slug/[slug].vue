@@ -7,6 +7,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { Navigation, Pagination } from 'swiper/modules';
 import BreadCrumb from '~/components/BreadCrumb.vue';
+import Heading from '~/components/Heading.vue';
+import ProductCard from '~/components/ProductCard.vue';
 
 const route = useRoute();
 const { fetchSingleProduct } = useProductsStore();
@@ -67,18 +69,13 @@ const { data: relatedProducts } = await useAsyncData('related-products', () => f
       </div>
     </div>
 
-    <div class="related-products my-10">
-      <Heading v-if="relatedProducts && relatedProducts?.length" class="text-[var(--primary-color)] mb-6">Related Products</Heading>
-      <div v-if="relatedProducts && relatedProducts?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
+    <div v-if="relatedProducts?.length" class="related-products my-10">
+      <Heading class="text-[var(--primary-color)] mb-6">Related Products</Heading>
+      <div class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 lg-max:grid-cols-4">
           <ProductCard 
             v-if="relatedProducts"
             v-for="relatedProduct in relatedProducts"
-            :productId="relatedProduct.id"
-            :product-slug="relatedProduct?.slug" 
-            :product-title="relatedProduct?.title" 
-            :product-image="relatedProduct?.images[0]"
-            :productPrice="relatedProduct.price"
-            :productDescription="relatedProduct.description"
+            :key="relatedProducts.id"
             :product="relatedProduct"
           />
       </div>

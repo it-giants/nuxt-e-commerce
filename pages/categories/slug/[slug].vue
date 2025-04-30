@@ -4,6 +4,7 @@ import BreadCrumb from '~/components/BreadCrumb.vue';
 import { useProductsStore } from '#imports';
 import { useCategoriesStore } from '#imports';
 import Heading from '~/components/Heading.vue';
+import ProductCard from '~/components/ProductCard.vue';
 
 const route = useRoute();
 
@@ -40,10 +41,10 @@ const { data: products} = await useAsyncData('products-category', () => fetchPro
         </div>
       </div>
 
-      <div class="current-category-products my-10">
-        <Heading v-if="products && products?.length" class="text-[var(--primary-color)] mb-6">More Products in {{ singleCategory?.name }}</Heading>
-        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
-            <ProductCard 
+      <div v-if="products?.length" class="current-category-products my-10">
+        <Heading class="text-[var(--primary-color)] mb-6">More Products in {{ singleCategory?.name }}</Heading>
+        <div class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 lg-max:grid-cols-4">
+            <ProductCard
                 v-if="products"
                 v-for="product in products"
                 :key="product.id"
