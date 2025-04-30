@@ -1,5 +1,4 @@
 <script setup>
-import Container from './Container.vue';
 import { useThemeStore } from '@/stores/themeStore.js';
 
 const themeStore = useThemeStore();
@@ -11,12 +10,6 @@ function submitSearch() {
   router.push({ path: '/products', query });
   searchInput.value = '';
 }
-
-// Resolve hydration mismatch
-const mounted = ref(false);
-onMounted(() => {
-  mounted.value = true;
-})
 </script>
 
 <template>
@@ -33,6 +26,7 @@ onMounted(() => {
           <li><NuxtLink to="/">Home</NuxtLink></li>
           <li><NuxtLink to="/categories">Categories</NuxtLink></li>
           <li><NuxtLink to="/products">Products</NuxtLink></li>
+          <li><NuxtLink to="/favorites">Favorites</NuxtLink></li>
         </ul>
       </nav>
 
@@ -48,7 +42,13 @@ onMounted(() => {
       </div> 
 
       <div>
-        <button v-if="mounted" @click="themeStore.toggleDark">{{ themeStore.isDark ? 'Light ☀️' : 'Dark 🕶️' }}</button>
+        <ClientOnly>
+          <button  @click="themeStore.toggleDark">{{ themeStore.isDark ? 'Light ☀️' : 'Dark 🕶️' }}</button>
+
+          <template #fallback>
+            <span>Mode...</span>
+          </template>
+        </ClientOnly>
       </div>
     </Container>
   </header>

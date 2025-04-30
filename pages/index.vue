@@ -6,6 +6,10 @@ import HeroSection from '~/components/HeroSection.vue';
 
 useHead({
     title: 'Homepage',
+
+    meta: [
+        { name: 'description', content: 'Find the most high quality products in the market!' }
+    ]
 });
 
 const { fetchCategories } = useCategoriesStore();
@@ -18,7 +22,7 @@ const { data: categories } = await useAsyncData('homepage-categories', () => fet
   <section class="categories py-10">
         <Container>
             <Heading class="mb-5 primary-color">Categories</Heading>
-            <div v-if="categories && categories?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
+            <div v-if="categories && categories?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
                 <CategoryCard
                     v-for="category in categories"
                     :key="category?.id"

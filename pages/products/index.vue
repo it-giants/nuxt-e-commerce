@@ -1,11 +1,12 @@
 <script setup>
 import { useProductsStore } from '#imports';
-import ProductCard from '~/components/ProductCard.vue'
-import Container from '~/components/Container.vue';
-import Heading from '~/components/Heading.vue';
 
 useHead({
     title: 'Products',
+
+    meta: [
+        { name: 'description', content: 'Browse our amazing products and enjoy your time!' }
+    ]
 });
 
 const route = useRoute();
@@ -26,13 +27,11 @@ watch(() => titleQuery.value, () => {
         <Container>
             <Heading class="mb-5 primary-color">Products</Heading>
 
-            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
+            <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
                 <ProductCard 
                     v-for="product in products"
                     :key="product.id"
-                    :product-slug="product?.slug" 
-                    :product-title="product?.title" 
-                    :product-image="product?.images[0]" 
+                    :product="product"
                 />
             </div>
             

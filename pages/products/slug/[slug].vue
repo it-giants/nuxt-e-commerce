@@ -13,7 +13,11 @@ const { fetchSingleProduct } = useProductsStore();
 const { data: singleProduct } = await useAsyncData('single-product', () => fetchSingleProduct(route.params.slug));
 
 useHead({
-    title: singleProduct?.value?.title
+    title: singleProduct?.value?.title,
+
+    meta: [
+        { name: 'description', content: singleProduct?.value?.description }
+    ]
 });
 
 const { fetchProducts } = useProductsStore();
@@ -65,14 +69,17 @@ const { data: relatedProducts } = await useAsyncData('related-products', () => f
 
     <div class="related-products my-10">
       <Heading v-if="relatedProducts && relatedProducts?.length" class="text-[var(--primary-color)] mb-6">Related Products</Heading>
-      <div v-if="relatedProducts && relatedProducts?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
+      <div v-if="relatedProducts && relatedProducts?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
           <ProductCard 
-              v-if="relatedProducts"
-              v-for="relatedProduct in relatedProducts"
-              :key="relatedProduct?.id"
-              :product-slug="relatedProduct?.slug" 
-              :product-title="relatedProduct?.title" 
-              :product-image="relatedProduct?.images[0]" 
+            v-if="relatedProducts"
+            v-for="relatedProduct in relatedProducts"
+            :productId="relatedProduct.id"
+            :product-slug="relatedProduct?.slug" 
+            :product-title="relatedProduct?.title" 
+            :product-image="relatedProduct?.images[0]"
+            :productPrice="relatedProduct.price"
+            :productDescription="relatedProduct.description"
+            :product="relatedProduct"
           />
       </div>
     </div>

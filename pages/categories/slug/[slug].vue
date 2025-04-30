@@ -12,7 +12,11 @@ const { fetchSingleCategory } = useCategoriesStore();
 const { data: singleCategory } = await useAsyncData('singleCategory', () => fetchSingleCategory(route.params.slug));
 
 useHead({
-    title: singleCategory?.value?.name
+    title: singleCategory?.value?.name,
+
+    meta: [
+        { name: 'description', content: singleCategory?.value?.name }
+    ]
 });
 
 // Fetch Related Products to current category
@@ -38,14 +42,12 @@ const { data: products} = await useAsyncData('products-category', () => fetchPro
 
       <div class="current-category-products my-10">
         <Heading v-if="products && products?.length" class="text-[var(--primary-color)] mb-6">More Products in {{ singleCategory?.name }}</Heading>
-        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 md-max:grid-cols-3">
+        <div v-if="products && products?.length" class="grid grid-cols-5 gap-8 sm-max:gap-4 sm-max:grid-cols-2 sm-max:grid-cols-3 lg-max:grid-cols-4">
             <ProductCard 
                 v-if="products"
                 v-for="product in products"
-                :key="product?.id"
-                :product-slug="product?.slug" 
-                :product-title="product?.title" 
-                :product-image="product?.images[0]" 
+                :key="product.id"
+                :product="product"
             />
         </div>
       </div>
