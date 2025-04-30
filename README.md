@@ -72,4 +72,14 @@ yarn preview
 bun run preview
 ```
 
+For this project I've used:
+
+1. @pinia/nuxt
+2. @nuxt/image
+3. @nuxtjs/google-fonts
+4. @nuxtjs/tailwindcss
+5. pinia-plugin-persistedstate
+6. Swiper
+7. @iconify-json/mdi
+
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
